@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: fleet-nginx
+  name: fleet-nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fleet-nginx
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: fleet-nginx
+    spec:
+      containers:
+      - image: nginx:alpine
+        name: nginx
+        ports:
+        - containerPort: 80
