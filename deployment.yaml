@@ -4,7 +4,7 @@ metadata:
   creationTimestamp: null
   labels:
     app: fleet-nginx
-    env: testing
+    env: devel
   name: fleet-nginx
 spec:
   replicas: 1
