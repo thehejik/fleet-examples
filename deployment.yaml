@@ -5,6 +5,7 @@ metadata:
   labels:
     app: fleet-nginx
   name: fleet-nginx
+  namespace: fleet-nginx-github
 spec:
   replicas: 3
   selector:
