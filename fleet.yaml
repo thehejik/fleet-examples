@@ -1,18 +1,20 @@
 defaultNamespace: fleet-nginx-github
 # This is new feature from 2.8.3
 targetCustomizations:
-- name: prod
+- name: production
+  #dhcp32
   clusterSelector:
     matchLabels:
-      env: prod
+      environment: prod
   correctDrift:
     enabled: true
     force: true
     keepFailHistory: true
-- name: devel
+- name: development
+  #dhcp12
   clusterSelector:
     matchLabels:
-      env: devel
+      environment: dev
   correctDrift:
     enabled: false
     force: false
