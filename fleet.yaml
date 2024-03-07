@@ -8,7 +8,7 @@ targetCustomizations:
       environment: prod
   correctDrift:
     enabled: true
-    force: false
+    force: true
     keepFailHistory: true
 - name: development
   #dhcp12
