@@ -42,7 +42,6 @@ spec:
       - command:
         - /bin/sh
         - -c
-        - sleep
-        - inf
+        - sleep inf
         image: busybox
         name: busybox
