@@ -50,9 +50,10 @@ apiVersion: v1
 data:
   key1: item1
   key2: item2
-  key3: 
-    - item3a
-    - item3b
+  key3: |
+    item3a
+    item3b
+    item3c
 kind: ConfigMap
 metadata:
   name: testing-map
