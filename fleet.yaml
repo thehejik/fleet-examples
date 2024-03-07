@@ -6,14 +6,14 @@ targetCustomizations:
     matchLabels:
       env: prod
   correctDrift:
-    enabled: false
-    force: false
-    keepFailHistory: false
+    enabled: true
+    force: true
+    keepFailHistory: true
 - name: devel
   clusterSelector:
     matchLabels:
       env: devel
   correctDrift:
-    enabled: true
-    force: true
-    keepFailHistory: true
+    enabled: false
+    force: false
+    keepFailHistory: false
