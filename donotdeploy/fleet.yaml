@@ -1,0 +1,7 @@
+defaultNamespace: fleet-nginx-github
+targetCustomizations:
+- name: dev
+  doNotDeploy: true
+  clusterSelector:
+    matchLabels:
+      env: dev
