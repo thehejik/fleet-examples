@@ -4,12 +4,11 @@ targetCustomizations:
   - name: default
     helm:
       values:
-        # Extract the 'region' variable from CAPI topology variables
-        region: |
-          ${ $region := "unknown" }
-          ${ range .ClusterValues.Cluster.spec.topology.variables }
-            ${ if eq .name "region" }
-              ${ $region = .value }
-            ${ end }
-          ${ end }
-          ${ $region }
+        region: |-
+          ${- $region := "unknown" -}
+          ${- range .ClusterValues.Cluster.spec.topology.variables -}
+            ${- if eq .name "region" -}
+              ${- $region = .value -}
+            ${- end -}
+          ${- end -}
+          ${- $region -}

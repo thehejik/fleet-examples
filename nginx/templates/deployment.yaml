@@ -1,11 +1,12 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: nginx-index
+  name: {{ .Release.Name }}-nginx-index
 data:
   index.html: |
     <!DOCTYPE html>
     <html>
+    <head><title>Region Check</title></head>
     <body>
       <h1>Cluster Region: {{ .Values.region }}</h1>
     </body>
@@ -14,16 +15,16 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-region-app
+  name: {{ .Release.Name }}-nginx-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx-region-app
+      app: {{ .Release.Name }}-nginx
   template:
     metadata:
       labels:
-        app: nginx-region-app
+        app: {{ .Release.Name }}-nginx
     spec:
       containers:
         - name: nginx
@@ -36,16 +37,16 @@ spec:
       volumes:
         - name: html
           configMap:
-            name: nginx-index
+            name: {{ .Release.Name }}-nginx-index
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-region-svc
+  name: {{ .Release.Name }}-nginx-svc
 spec:
   type: NodePort
   ports:
     - port: 80
       targetPort: 80
   selector:
-    app: nginx-region-app
+    app: {{ .Release.Name }}-nginx
