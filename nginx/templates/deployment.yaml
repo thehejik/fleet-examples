@@ -2,15 +2,14 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: nginx-index
-spec:
-  data:
-    index.html: |
-      <!DOCTYPE html>
-      <html>
-      <body>
-        <h1>Cluster Region: {{ .Values.region }}</h1>
-      </body>
-      </html>
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+    <body>
+      <h1>Cluster Region: {{ .Values.region }}</h1>
+    </body>
+    </html>
 ---
 apiVersion: apps/v1
 kind: Deployment
