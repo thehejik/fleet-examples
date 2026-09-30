@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-index
+spec:
+  data:
+    index.html: |
+      <!DOCTYPE html>
+      <html>
+      <body>
+        <h1>Cluster Region: {{ .Values.region }}</h1>
+      </body>
+      </html>
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-region-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-region-app
+  template:
+    metadata:
+      labels:
+        app: nginx-region-app
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:alpine
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: html
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: html
+          configMap:
+            name: nginx-index
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-region-svc
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app: nginx-region-app
